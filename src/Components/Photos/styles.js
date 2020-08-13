@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import img from '../../assets/visualizacao-black.svg';
+import excluir from '../../assets/excluir.svg';
+
 
 const scaleUp = keyframes`
     to{
@@ -161,4 +163,38 @@ export const ListaComments = styled.ul`
         line-height: 1;
     }
 
+`;
+
+export const Button = styled.button`
+    padding: 0;
+    border-radius: .2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border: none;
+    outline: none;
+    transition: .3s;
+
+
+    &::before{
+        
+        content: "";
+        width: 21px;
+        height: 21px;
+        
+        background: url(${excluir}) no-repeat 50%;
+        align-items: center;
+        align-content: center;
+        margin-right: .5rem;
+        position: relative;
+        justify-content: center;
+    }
+    
+
+    &:hover, &focus{
+        background-color: #ff0606b8;
+        color: #000000;
+    }
 `;

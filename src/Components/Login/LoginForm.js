@@ -53,7 +53,7 @@ function LoginForm() {
             <Cadastro>
 
 
-                <Link to="/login/forgot">Cadastre-se</Link>
+                <h2>Cadastre-se</h2>
                 <p>Ainda nao possui cadastro? </p>
 
                 <Button>

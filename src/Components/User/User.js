@@ -5,11 +5,14 @@ import Feed from '../Feed/Feed';
 import UserPhotoPost from './UserPhotoPost';
 import UserStats from './UserStats';
 import { UserContext } from '../../UserStorage';
+// import useFeed from '../../hooks/useFeed';
 
 function User() {
 
     const { data } = React.useContext(UserContext);
-    console.log('data user', data.id);
+
+    // const {data} = useFeed({rota: 'feed', user: data.user.id});
+    //console.log('data user', data);
 
     return (
         <section className="container ">
@@ -17,7 +20,7 @@ function User() {
 
             <UserHeader />
             <Routes >
-                <Route path="/" element={<Feed user={data.id} />} />
+                <Route path="/" element={<Feed user={data.user.id} />} />
                 <Route path="/new-post" element={<UserPhotoPost />} />
                 <Route path="/graph" element={<UserStats />} />
                 {/* <Route path="*" element={<NotFound />} /> */}

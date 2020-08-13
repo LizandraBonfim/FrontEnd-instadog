@@ -4,37 +4,13 @@ import Error from '../Error';
 import FeedPhotosItem from './FeedPhotosItem';
 import Loading from '../Partials/Loading';
 import styles from './styles.module.css';
+import useFeed from '../../hooks/useFeed';
 
-function FeedPhotos({ setModalPhoto }) {
+function FeedPhotos({ user, setModalPhoto }) {
 
 
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
-    const [data, setData] = React.useState([]);
+    const { data, error, loading } = useFeed({ rota: 'feed', user });
 
-    React.useEffect(() => {
-        async function fetchPhotos() {
-            try {
-                const response = await api.get('feed', {
-                    params: {
-                        page: 1,
-                        items: 6
-                    }
-                });
-
-                if (!response) throw new Error("Não há fotos disponiveis")
-
-                setData(response.data);
-            } catch (err) {
-                setError("Ocorreu um erro, tente novamente");
-            } finally {
-                setLoading(false);
-
-            }
-
-        }
-        fetchPhotos();
-    }, []);
 
     if (error) return <Error error={error} />
     if (loading) return <Loading />

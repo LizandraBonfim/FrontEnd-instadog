@@ -4,6 +4,7 @@ import Error from '../Error';
 import Loading from '../Partials/Loading';
 import PhotoContent from '../Photos/PhotoContent';
 import styles from './styles.module.css';
+import useKey from '../../hooks/useKey';
 
 
 function FeedModal({ photo, setModalPhoto }) {
@@ -11,6 +12,14 @@ function FeedModal({ photo, setModalPhoto }) {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [data, setData] = React.useState([]);
+    const { keyPressed } = useKey({ keyWatch: 'Escape', eventName: 'keydown' });
+
+    React.useEffect(() => {
+        console.log(keyPressed)
+        if (keyPressed)
+            setModalPhoto(null);
+
+    }, [setModalPhoto, keyPressed]);
 
     React.useEffect(() => {
         async function fetchPhotos() {
@@ -22,10 +31,9 @@ function FeedModal({ photo, setModalPhoto }) {
                 if (!response) throw new Error("Foto não disponivel ")
 
                 setData(response.data);
-                console.log('responssssssssse', response.data)
 
             } catch (err) {
-                setError(err.response.data.message)
+                setError("Favor realizar login")
             } finally {
                 setLoading(false);
 
@@ -40,13 +48,15 @@ function FeedModal({ photo, setModalPhoto }) {
             setModalPhoto(null);
     }
 
+
+
     return (
         <div className={styles.modal} onClick={handleOutsideClick}>
             {error && <Error error={error} />}
             {loading && <Loading />}
 
             {data &&
-                <PhotoContent data={data} />}
+                <PhotoContent dados={data} />}
         </div>
     )
 }

@@ -2,15 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Img, Details, Atributes } from './styles';
 import PhotoComments from './PhotoComments';
+import { useContext } from 'react';
+import { UserContext } from '../../UserStorage';
+import PhotoDelete from './PhotoDelete';
 
-function PhotoContent({ data }) {
+function PhotoContent({ dados }) {
 
-    const { photoId, userComments } = data;
+    const { photoId, userComments } = dados;
+    const { data } = useContext(UserContext);
 
-    console.log('daa,snkdnkwndwmndmw', userComments);
-    // console.log('photoid', data.photoId);
 
     if (!photoId) return null;
+
     return (
         <Container>
             <Img>
@@ -21,7 +24,10 @@ function PhotoContent({ data }) {
                 <div>
 
                     <p>
-                        <Link to={`/perfil/${photoId.user_id.name}`} >@{photoId.user_id.name}</Link>
+                        {data.user && data.user.id === photoId.user
+                            ? <PhotoDelete photo={photoId.id} />
+                            : <Link to={`/perfil/${photoId.user_id.name}`} >@{photoId.user_id.name}</Link>
+                        }
                         <span>{photoId.acessos}</span>
 
                     </p>

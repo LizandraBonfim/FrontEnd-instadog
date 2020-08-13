@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import img from '../../assets/login.jpg';
 
 export const FormLogin = styled.section`
-    /* margin-top: 4rem; */
+    margin-top: 20vh;
     margin-bottom: 2rem;
 
     > a{
@@ -10,6 +10,8 @@ export const FormLogin = styled.section`
         padding: 0.5rem 0 ;
         color: #667;
         line-height :1;
+        margin: 3rem 0;
+        font-size: 1.2rem;
 
         &::after{
             display: block;
@@ -25,10 +27,11 @@ export const FormLogin = styled.section`
 export const Cadastro = styled.div`
     margin: 2rem 2rem 0 0 ;
 
-    > a{
+    > h2{
         font-family: var(--type-second);
         line-height: 1;
         font-size: 2rem;
+        margin-bottom: 2rem;
 
         &::after{
             content: '';
@@ -41,6 +44,10 @@ export const Cadastro = styled.div`
 
             
         }
+    }
+
+    p{
+        margin-bottom: 1rem;
     }
 
 `;

@@ -27,37 +27,32 @@ export const UserStorage = ({ children }) => {
     const [login, setLogin] = React.useState(null);
 
     const singOut = useCallback(() => {
-        try {
 
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            navigate('/login');
 
-        } catch{
-            setError('Erro ao realizar Logout');
-            setLogin(false);
-
-        } finally {
-
-            setError(null);
-            setLoading(false);
-        }
-
+        setError(null);
+        setLogin(false);
+        navigate('/login');
         setData(null);
+        setLoading(false);
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('user');
+
     }, [navigate]);
 
     const singIn = useCallback(async ({ email, password }) => {
 
         try {
 
-            const response = await api.post('sessions', {
+            const { statusText, data } = await api.post('sessions', {
                 email, password
             });
 
-            const { token, user } = response.data;
+            const { token, user } = data;
 
+            console.log('data', data);
+            // console.log('', data);
 
-            if (token === null || user === null) {
+            if (statusText !== "OK") {
                 setError('Usuario invalido');
                 throw new Error('Usuario invalido');
             }
