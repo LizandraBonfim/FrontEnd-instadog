@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../service/api';
 
-function useFeed({ rota, user = null }) {
+function useFeed({ rota, user = null, page }) {
 
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
@@ -12,11 +12,13 @@ function useFeed({ rota, user = null }) {
             try {
                 const response = await api.get(`${rota}`, {
                     params: {
-                        page: 1,
+                        page: page,
                         items: 6,
                         user: user
                     }
                 });
+
+                console.log('response', response)
 
                 if (!response) throw new Error("Não há fotos disponiveis")
 
@@ -31,9 +33,9 @@ function useFeed({ rota, user = null }) {
 
         }
         fetchPhotos();
-    }, [rota, user]);
+    }, [rota, user, page]);
 
-    return { loading, error, data }
+    return { loading, error, data, page }
 }
 
 export default useFeed

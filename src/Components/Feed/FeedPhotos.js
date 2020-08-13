@@ -1,15 +1,24 @@
-import React from 'react';
-import api from '../../service/api';
+import React, { useEffect } from 'react';
 import Error from '../Error';
 import FeedPhotosItem from './FeedPhotosItem';
 import Loading from '../Partials/Loading';
 import styles from './styles.module.css';
 import useFeed from '../../hooks/useFeed';
 
-function FeedPhotos({ user, setModalPhoto }) {
+function FeedPhotos({ page, user, setModalPhoto, setInfinite }) {
 
 
-    const { data, error, loading } = useFeed({ rota: 'feed', user });
+    const { data, error, loading } = useFeed({ rota: 'feed', user, page: page });
+
+    useEffect(() => {
+
+        if (data.length < 6) setInfinite(false);
+        else setInfinite(true);
+
+
+    }, [data, setInfinite]);
+
+
 
 
     if (error) return <Error error={error} />
