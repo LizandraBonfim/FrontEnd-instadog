@@ -1,22 +1,50 @@
-import React, { useEffect } from 'react';
-import Error from '../Error';
+import React, { useCallback, useEffect } from 'react';
+
 import FeedPhotosItem from './FeedPhotosItem';
+import Error from '../Error';
 import Loading from '../Partials/Loading';
 import styles from './styles.module.css';
-import useFeed from '../../hooks/useFeed';
+import useApi from '../../hooks/useApi';
 
 function FeedPhotos({ page, user, setModalPhoto, setInfinite }) {
 
 
-    const { data, error, loading } = useFeed({ rota: 'feed', user, page: page });
+    const { data, loading, error, request } = useApi();
 
-    useEffect(() => {
+
+    const atualizarPagina = useCallback(() => {
+
+        setInfinite(false);
 
         if (data.length < 6) setInfinite(false);
         else setInfinite(true);
 
+    }, [data.length, setInfinite])
 
-    }, [data, setInfinite]);
+    useEffect(() => {
+
+
+        async function fetchPhoto() {
+
+            await request('get', '/feed',
+                {
+                    params: {
+                        page: page,
+                        items: 6,
+                        user: user
+                    }
+                }
+
+            );
+
+            atualizarPagina();
+
+
+        }
+
+        fetchPhoto();
+
+    }, [atualizarPagina, page, request, user]);
 
 
 

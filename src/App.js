@@ -8,6 +8,9 @@ import Home from './Components/Home';
 import Login from './Components/Login/index';
 import ProtectedRouter from './Components/ProtectedRouter';
 import User from './Components/User/User';
+import Photo from './Components/Photos/Photo';
+import Profile from './Components/Profile/Profile';
+import NotFound from './Components/NotFound';
 
 function App() {
   return (
@@ -21,6 +24,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="login/*" element={<Login />} />
               <ProtectedRouter path="conta/*" element={<User />} />
+              <Route path="foto/:id" element={<Photo />} />
+              <Route path="perfil/:user" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+
             </Routes>
 
           </main>

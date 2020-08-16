@@ -43,13 +43,17 @@ export const Container = styled.div`
             margin-right: 5px;
             background: url(${img});
         }
+
+
     }
 
     @media (max-width: 64rem){
         height: auto;
         max-height: calc(100vh - 4rem);
         overflow-y: auto;
-        grid-template-columns: minmax(20rem, 40rem)
+        display: grid;
+        grid-template-columns: minmax(9rem,30rem);
+        grid-template-rows: 16rem 20rem;
     }
     
 `;
@@ -59,7 +63,12 @@ export const Img = styled.div`
 
     @media (max-width: 64rem){
         grid-row: 1;
+        /* grid-template-rows: auto 1fr auto; */
 
+        img{
+
+            max-width: 100%;
+        }
     }
 `;
 
@@ -161,6 +170,34 @@ export const ListaComments = styled.ul`
     li{
         margin-bottom: .5rem;
         line-height: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        strong{
+            color: #5656a2eb;
+            margin-right: 0.5rem;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+
+        button{
+
+            border: none;
+            background: none;
+            cursor: pointer;
+            outline: none;
+
+                &::before{
+                content: '';
+                width: 17px;
+                display: inline-block;
+                height:17px;
+                margin-right: 5px;
+                background: url(${excluir}) no-repeat;
+            }
+        }
     }
 
 `;
@@ -197,4 +234,62 @@ export const Button = styled.button`
         background-color: #ff0606b8;
         color: #000000;
     }
+`;
+
+export const PhotoSingle = styled.section`
+
+
+    div{
+        display: block;
+        height: auto;
+
+        img{
+            border-radius: 5px;
+        }
+
+        div{
+            padding: 0 ;
+            margin-bottom: 2rem;
+            li > div {
+               
+            margin-bottom: 0rem;
+        
+            }
+            
+        }
+        
+        ${Button} {
+     
+            color: #000;
+            padding: .5rem;
+            background: #292d2c3d;
+            cursor: pointer;
+
+            &:focus, &:hover{
+                background: #292d2c7a;
+            }
+
+        }
+
+       
+       
+
+    }
+
+    ${Container}  {
+        font-size: 1.4rem;
+
+        span{ 
+
+            font-size: 1.4rem;
+
+            &::before{
+                width: 22px;
+                height: 13px;
+                background-size: 21px;
+            }
+
+        }
+    }
+
 `;

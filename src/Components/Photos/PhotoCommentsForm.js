@@ -1,33 +1,23 @@
 import React from 'react';
 import { FormComments } from './styles';
 import { ReactComponent as Enviar } from '../../assets/enviar.svg';
-import api from '../../service/api';
 import Error from '../Error';
+import useApi from '../../hooks/useApi';
 
 function PhotoCommentsForm({ id, setComments }) {
 
     const [comment, setComment] = React.useState('');
-    const [error, setError] = React.useState(null);
+    const { error, request } = useApi();
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        try {
 
-            await api.post(`/comments/${id}`, { comment })
-                .then(response => {
-                    setComment('');
-                    setComments((comments) => [...comments, response.data]);
-                });
-
-
-        } catch{
-            setError("Ocorreu um erro, tente mais tarde.");
-
-        } finally {
-            setError(false);
-        }
-
+        await request('post', `/comments/${id}`, { comment })
+            .then(response => {
+                setComment('');
+                setComments((comments) => [...comments, response.data]);
+            });
 
     }
 

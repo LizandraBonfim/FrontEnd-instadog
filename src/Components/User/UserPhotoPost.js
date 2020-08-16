@@ -3,10 +3,9 @@ import Input from '../Partials/Input';
 import Error from '../Error';
 import { Button } from '../Partials/styles';
 import useForm from '../../hooks/useForm';
-import api from '../../service/api';
 import { UserPhostContent, Preview } from './styles';
 import { useNavigate } from 'react-router-dom';
-
+import useApi from '../../hooks/useApi';
 
 const UserPhotoPost = () => {
 
@@ -15,8 +14,8 @@ const UserPhotoPost = () => {
     const peso = useForm();
     const [img, setImg] = React.useState({});
 
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const { error, loading, request } = useApi();
+
     const navigate = useNavigate();
 
 
@@ -35,21 +34,11 @@ const UserPhotoPost = () => {
             return nome.validate();
         }
 
-        try {
-            setLoading(true);
-            setError(null);
-
-            await api.post('post', formData)
-
-            navigate('/');
 
 
-        } catch (err) {
-            setError(err.response.data.message)
-        } finally {
-            setLoading(false);
+        await request('post', 'post', formData)
 
-        }
+        navigate('/');
 
     }
 
@@ -64,6 +53,8 @@ const UserPhotoPost = () => {
     return (
         <>
             <UserPhostContent className="animeLeft">
+
+
                 <form onSubmit={handleSubmit}>
                     <Input
                         type="text"

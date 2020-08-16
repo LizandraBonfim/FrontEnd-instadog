@@ -7,6 +7,7 @@ import Button from '../Partials/Button/index';
 import useForm from '../../hooks/useForm';
 import { UserContext } from '../../UserStorage';
 import Error from '../Error';
+import Head from '../Partials/Head';
 
 function LoginForm() {
     const email = useForm('email');
@@ -25,6 +26,7 @@ function LoginForm() {
 
     return (
         <FormLogin className="animeLeft">
+            <Head title="Login" />
             <h1 className="title">Login</h1>
 
             <form onSubmit={handleSubmit}>
@@ -48,7 +50,7 @@ function LoginForm() {
                 }
             </form>
 
-            <Link to="/login/cadastro">Perdeu a senha? </Link>
+            <Link to="/login/forgot">Perdeu a senha? </Link>
 
             <Cadastro>
 

@@ -35,6 +35,11 @@ export const UserPhostContent = styled.section`
         cursor: pointer;
     }
 
+    @media(max-width: 40rem){
+        grid-template-columns: 1fr;
+
+    }
+
 `;
 
 
@@ -50,3 +55,39 @@ export const Preview = styled.div`
         padding-bottom: 100%;
     }
 `;
+
+export const Graph = styled.section`
+    
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+
+    div:first-child{
+        grid-column: 1/ 3;
+        padding: 2rem;
+        font-size: 3rem;
+
+     
+    }
+
+    @media(max-width: 40rem){
+        grid-template-columns: 1fr;
+    
+        div:first-child{
+            grid-column: 1;
+
+
+        }
+    }
+`;
+
+export const GraficContainer = styled.div`
+    box-shadow: 0 10px 20px rgba(0, 0 ,0 ,0.3);
+    border-radius: .4rem;
+    display: grid;
+    align-items: center;
+`;
+

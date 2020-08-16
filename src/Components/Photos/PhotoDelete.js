@@ -1,29 +1,23 @@
 import React from 'react';
 import { Button } from './styles';
-import api from '../../service/api';
 import Error from '../Error';
+import useApi from '../../hooks/useApi';
 
 function PhotoDelete({ photo }) {
 
-    const [error, setError] = React.useState(null);
+    const { error, request } = useApi();
 
     async function handleDelete() {
 
         const confirm = window.confirm('Está tentando excluir a foto? ');
 
         if (confirm) {
-            try {
 
-                console.log(photo)
-                setError(false);
-                const { response } = await api.delete(`delete/${photo}`);
+            await request('delete', `delete/${photo}`);
 
-                window.location.reload();
-                console.log('excluida? ', response);
-            } catch (err) {
-                setError('Não foi possivel excluir a foto');
+            window.location.reload();
 
-            }
+
         }
     }
 
@@ -31,7 +25,7 @@ function PhotoDelete({ photo }) {
         <>
             <Button onClick={handleDelete}>
                 Deletar
-        </Button>
+            </Button>
 
             <Error error={error} />
         </>

@@ -6,18 +6,18 @@ export const Wrapper = styled.div`
     height: 100vh;
     display: flex;
     top: 0px;
-    left: 0;
+    left: 0px;
     z-index: 1000;
 `;
 
 export const LoadingContainer = styled.div`
-    margin: auto;
+     margin: auto;
     width: 80px;
     height: 80px;
     display: flex;
-    align-items: center;
+    padding-left: 5px;
+    background: rgba(255, 255, 255, 0.5);
     justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    padding-left: 0.5px;
-    background: rgba(255, 255, 255, .5)
 `;

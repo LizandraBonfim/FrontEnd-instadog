@@ -26,7 +26,7 @@ function PhotoContent({ dados }) {
                     <p>
                         {data.user && data.user.id === photoId.user
                             ? <PhotoDelete photo={photoId.id} />
-                            : <Link to={`/perfil/${photoId.user_id.name}`} >@{photoId.user_id.name}</Link>
+                            : <Link to={`/perfil/${photoId.user_id.id}`} >@{photoId.user_id.name}</Link>
                         }
                         <span>{photoId.acessos}</span>
 

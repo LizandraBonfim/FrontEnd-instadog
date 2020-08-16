@@ -1,20 +1,20 @@
 import React from 'react';
-import api from '../../service/api';
 import Error from '../Error';
 import Loading from '../Partials/Loading';
 import PhotoContent from '../Photos/PhotoContent';
 import styles from './styles.module.css';
 import useKey from '../../hooks/useKey';
+import useApi from '../../hooks/useApi';
 
 
 function FeedModal({ photo, setModalPhoto }) {
 
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
-    const [data, setData] = React.useState([]);
+    const { data, loading, error, request } = useApi();
+
     const { keyPressed } = useKey({ keyWatch: 'Escape', eventName: 'keydown' });
 
     React.useEffect(() => {
+
         console.log(keyPressed)
         if (keyPressed)
             setModalPhoto(null);
@@ -23,31 +23,21 @@ function FeedModal({ photo, setModalPhoto }) {
 
     React.useEffect(() => {
         async function fetchPhotos() {
-            try {
 
+            const response = await request('get', `feed/photo/${photo.id}`);
 
-                const response = await api.get(`feed/photo/${photo.id}`);
-
-                if (!response) throw new Error("Foto não disponivel ")
-
-                setData(response.data);
-
-            } catch (err) {
-                setError("Favor realizar login")
-            } finally {
-                setLoading(false);
-
-            }
+            if (!response) throw new Error("Foto não disponivel ")
 
         }
         fetchPhotos();
-    }, [photo.id]);
+    }, [photo.id, request]);
 
     function handleOutsideClick(event) {
         if (event.target === event.currentTarget)
             setModalPhoto(null);
     }
 
+    console.log('loading', loading)
 
 
     return (

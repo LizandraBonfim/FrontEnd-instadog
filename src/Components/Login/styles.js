@@ -22,6 +22,11 @@ export const FormLogin = styled.section`
 
         }
     }
+
+    @media(max-width: 40rem){
+        margin-top: 0vh;
+
+    }
 `;
 
 export const Cadastro = styled.div`
@@ -84,3 +89,12 @@ export const Forms = styled.div`
     }
 `;
 
+export const MessageSuccess = styled.p`
+    color: #2ea44f;
+    padding: 1rem 0 ;
+
+    a{
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+`;

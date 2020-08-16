@@ -42,6 +42,8 @@ export const UserStorage = ({ children }) => {
     const singIn = useCallback(async ({ email, password }) => {
 
         try {
+            setLoading(true);
+
 
             const { statusText, data } = await api.post('sessions', {
                 email, password
@@ -50,6 +52,7 @@ export const UserStorage = ({ children }) => {
             const { token, user } = data;
 
             console.log('data', data);
+            console.log('data', statusText);
             // console.log('', data);
 
             if (statusText !== "OK") {
@@ -68,7 +71,6 @@ export const UserStorage = ({ children }) => {
 
 
             setData({ token, user });
-            setLoading(true);
             setLogin(true);
 
 
@@ -79,8 +81,6 @@ export const UserStorage = ({ children }) => {
             setError('Usuario invalido')
 
             setLoading(false);
-        } finally {
-
         }
 
     }, [singOut, navigate]);
@@ -91,6 +91,7 @@ export const UserStorage = ({ children }) => {
 
         try {
 
+            setLoading(true);
 
             const local = localStorage.setItem('user', JSON.stringify(user));
 
@@ -106,7 +107,6 @@ export const UserStorage = ({ children }) => {
                 user
             });
 
-            setLoading(true);
             setLogin(true);
 
 

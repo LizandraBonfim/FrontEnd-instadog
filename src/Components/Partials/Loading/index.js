@@ -7,19 +7,25 @@ function Loading() {
     const [step, setStep] = useState(0);
 
     useEffect(() => {
+
         function updateStep() {
 
             setStep((step) => {
-                if (step < 3) return step + 1;
-                else return 0;
-            })
-        }
 
+                if (step < 3)
+                    return step + 1;
+
+                return 0;
+
+            });
+
+        }
         const interval = setInterval(updateStep, 300);
 
-        return () => {
-            clearInterval(interval);
-        }
+        return (() => {
+            clearInterval(interval)
+        })
+
     }, []);
 
     function displayStep(i) {
@@ -27,6 +33,7 @@ function Loading() {
             display: step === i ? 'block' : 'none'
         }
     }
+
 
     return (
         <Wrapper>

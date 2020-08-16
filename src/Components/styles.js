@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import foto from '../assets/usuario.svg';
+import footer from '../assets/dogs-footer.svg';
 
 export const ContainerHeader = styled.header`
    
@@ -32,3 +33,21 @@ export const Login = styled.nav`
         margin-left: 0.5rem;
     }
 `;
+
+export const Container = styled.footer` 
+    background: #000;
+    color: #764706;
+    height: 20vh;
+    text-align: center;
+    padding-top: 3rem;
+
+    &::before{
+        content: '';
+        background: url(${footer}) no-repeat center center;
+        display: grid;
+        width: 37px;
+        height: 35px;
+        margin: auto;
+
+    }
+`

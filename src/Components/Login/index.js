@@ -6,6 +6,7 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import { UserContext } from '../../UserStorage';
 import { LoginContent, Forms } from './styles';
+import NotFound from '../NotFound';
 
 export default function Login() {
     const { login } = React.useContext(UserContext);
@@ -19,8 +20,10 @@ export default function Login() {
                 <Routes>
                     <Route path="/" element={<LoginForm />} />
                     <Route path="cadastro" element={<Cadastro />} />
-                    <Route path="forgot" element={<ForgotPassword />} />
                     <Route path="reset" element={<ResetPassword />} />
+                    <Route path="forgot" element={<ForgotPassword />} />
+                    <Route path="*" element={<NotFound />} />
+
                 </Routes>
             </Forms>
         </LoginContent>

@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Container } from './styles';
 
 function Footer() {
     return (
-        <footer>
-            Footer
-        </footer>
+        <Container>
+            @Direitos reservados a Lizandra 2020.
+        </Container>
     )
 }
 
-export default Footer
+export default Footer;
