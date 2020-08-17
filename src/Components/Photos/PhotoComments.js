@@ -13,7 +13,6 @@ function PhotoComments(props) {
 
     const { request } = useApi();
 
-    console.log(`comments photocomments`, data);
 
     function handleDelete(i) {
 

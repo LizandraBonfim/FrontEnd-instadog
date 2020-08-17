@@ -46,7 +46,6 @@ export default function Cadastro() {
         );
 
         if (!dados) {
-            console.log('Ocorreu um erro');
 
             return null;
         }

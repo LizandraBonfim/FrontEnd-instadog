@@ -24,6 +24,7 @@
     transition: .2s;
 }
 
+
   
 
        
@@ -40,7 +41,7 @@
 
 .nav{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
 
 }
@@ -101,7 +102,15 @@
     transition: .4s;
     opacity: 0;
     pointer-events: none;
+
+    
 }
+
+.navMobile > a:nth-child(2) > svg > *{
+    width: 28;
+    height: 18;
+}
+
 
 .navMobileMenu{
     pointer-events: initial;

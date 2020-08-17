@@ -10,7 +10,7 @@ import Head from '../Partials/Head';
 
 function ResetPassword() {
     const password = useForm('password');
-    const { data, loading, request } = useApi();
+    const { loading, request } = useApi();
     const [enviado, setEnviado] = React.useState(false);
     const [error, setError] = React.useState(false);
 
@@ -26,8 +26,6 @@ function ResetPassword() {
 
 
             const userId = JSON.parse(user);
-
-            console.log('data', data);
 
             try {
 

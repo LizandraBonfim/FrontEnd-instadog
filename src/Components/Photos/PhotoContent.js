@@ -17,7 +17,7 @@ function PhotoContent({ dados }) {
     return (
         <Container>
             <Img>
-                <img src={`http://localhost:3333/files/${photoId.photo}`} alt={photoId.nome} />
+                <img src={`http://192.168.1.6:3333/files/${photoId.photo}`} alt={photoId.nome} />
             </Img>
 
             <Details>

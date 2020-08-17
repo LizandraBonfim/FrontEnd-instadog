@@ -22,8 +22,6 @@ function Profile() {
 
     }, [request, user]);
 
-    console.log('perfil dadassssssssssss', data)
-
     if (error) return <NotFound />
     if (loading) return <Loading />
     if (data)

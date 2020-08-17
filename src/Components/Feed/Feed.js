@@ -8,7 +8,6 @@ const Feed = ({ user }) => {
     const [pages, setPages] = useState([1]);
     const [infinite, setInfinite] = useState(true);
 
-    console.log('user feed', user);
 
 
     useEffect(() => {

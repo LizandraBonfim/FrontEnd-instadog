@@ -20,6 +20,9 @@ function UserHeader() {
                 setTitle("Estatisticas");
                 break;
 
+            case '/conta/atualizar':
+                setTitle("Atualizar perfil");
+                break;
             default:
                 setTitle("Minhas fotos");
                 break;

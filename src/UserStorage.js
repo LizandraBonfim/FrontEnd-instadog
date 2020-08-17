@@ -11,6 +11,7 @@ export const UserStorage = ({ children }) => {
     const navigate = useNavigate();
 
     const [data, setData] = React.useState(() => {
+
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
 
@@ -51,9 +52,6 @@ export const UserStorage = ({ children }) => {
 
             const { token, user } = data;
 
-            console.log('data', data);
-            console.log('data', statusText);
-            // console.log('', data);
 
             if (statusText !== "OK") {
                 setError('Usuario invalido');
@@ -93,14 +91,7 @@ export const UserStorage = ({ children }) => {
 
             setLoading(true);
 
-            const local = localStorage.setItem('user', JSON.stringify(user));
-
-            if (!local) {
-
-                setError('dle');
-                setData(null);
-                throw new Error('');
-            }
+            localStorage.setItem('user', JSON.stringify(user));
 
             setData({
                 token: data.token,

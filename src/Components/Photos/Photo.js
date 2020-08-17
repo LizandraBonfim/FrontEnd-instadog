@@ -17,8 +17,8 @@ function Photo() {
     React.useEffect(() => {
         async function fetch() {
 
-            const response = await request('get', `feed/photo/${id}`);
-            console.log(`response`, response)
+            await request('get', `feed/photo/${id}`);
+
         }
         fetch();
 

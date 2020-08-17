@@ -4,6 +4,7 @@ import UserHeader from './UserHeader';
 import Feed from '../Feed/Feed';
 import UserPhotoPost from './UserPhotoPost';
 import UserStats from './UserStats';
+import UpdateUser from './UpdateUser';
 import { UserContext } from '../../UserStorage';
 import NotFound from '../NotFound';
 
@@ -11,8 +12,6 @@ import NotFound from '../NotFound';
 function User() {
 
     const { data } = React.useContext(UserContext);
-
-    console.log(`dadada`, data)
 
     if (!data.token) return <Navigate to="/" />
 
@@ -24,6 +23,7 @@ function User() {
             <Routes >
                 <Route path="/" element={<Feed user={data.user.id} />} />
                 <Route path="/new-post" element={<UserPhotoPost />} />
+                <Route path="/atualizar" element={<UpdateUser data={data.user} />} />
                 <Route path="/graph" element={<UserStats />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>

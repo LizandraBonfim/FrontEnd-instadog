@@ -11,15 +11,18 @@ function FeedModal({ photo, setModalPhoto }) {
 
     const { data, loading, error, request } = useApi();
 
-    const { keyPressed } = useKey({ keyWatch: 'Escape', eventName: 'keydown' });
+    const { keyPressedEsc } = useKey({ keyWatch: 'Escape', eventName: 'keydown' });
 
     React.useEffect(() => {
 
-        console.log(keyPressed)
-        if (keyPressed)
+
+        if (keyPressedEsc)
             setModalPhoto(null);
 
-    }, [setModalPhoto, keyPressed]);
+    }, [setModalPhoto, keyPressedEsc]);
+
+
+
 
     React.useEffect(() => {
         async function fetchPhotos() {
@@ -37,7 +40,7 @@ function FeedModal({ photo, setModalPhoto }) {
             setModalPhoto(null);
     }
 
-    console.log('loading', loading)
+
 
 
     return (

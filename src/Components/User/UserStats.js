@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useApi from '../../hooks/useApi';
 import Error from '../Error';
 import Loading from '../Partials/Loading';
-const UserStatGrafic = React.laze(() => import('./UserStatsGrafic'));
+const UserStatGrafic = React.lazy(() => import('./UserStatsGrafic'));
 
 const UserStats = () => {
 
@@ -14,9 +14,8 @@ const UserStats = () => {
         async function api() {
             const token = localStorage.getItem('token');
 
-            const response = await request('get', '/conta/myphotos', token);
+            await request('get', '/conta/myphotos', token);
 
-            console.log('response', response)
         }
 
         api();
@@ -27,10 +26,10 @@ const UserStats = () => {
 
     if (data)
         return (
-            <div>
+            <React.Suspense fallback={<div></div>}>
 
                 <UserStatGrafic data={data} />
-            </div>
+            </React.Suspense>
         )
 
     else return null;

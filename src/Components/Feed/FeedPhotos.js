@@ -3,14 +3,14 @@ import React, { useCallback, useEffect } from 'react';
 import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Error';
 import Loading from '../Partials/Loading';
-import styles from './styles.module.css';
 import useApi from '../../hooks/useApi';
+import styles from './styles.module.css';
+
 
 function FeedPhotos({ page, user, setModalPhoto, setInfinite }) {
 
 
     const { data, loading, error, request } = useApi();
-
 
     const atualizarPagina = useCallback(() => {
 
@@ -37,6 +37,7 @@ function FeedPhotos({ page, user, setModalPhoto, setInfinite }) {
 
             );
 
+
             atualizarPagina();
 
 
@@ -56,8 +57,8 @@ function FeedPhotos({ page, user, setModalPhoto, setInfinite }) {
         return (
             <ul className={`${styles.feed} animeLeft`}>
 
-                {data.map(photo => (
-                    <FeedPhotosItem key={photo.id} photo={photo} setModalPhoto={setModalPhoto} />
+                {data.map((photo, index) => (
+                    <FeedPhotosItem key={photo.id} photo={photo} setModalPhoto={setModalPhoto} setAnterior={index - 1} />
                 ))}
             </ul>
         )

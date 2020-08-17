@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { VictoryBar, VictoryPie, VictoryChart, Bar } from 'victory';
+import { VictoryBar, VictoryPie, VictoryChart } from 'victory';
 import { Graph, GraficContainer } from './styles';
 
 

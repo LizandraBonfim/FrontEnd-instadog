@@ -16,7 +16,6 @@ function useApi() {
 
             response = await api[`${method}`](rota, params);
 
-            console.log('responseusEApi', response);
             if (!response) throw new Error('ocorreu um erro no usepai');
 
             return response;

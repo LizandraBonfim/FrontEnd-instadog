@@ -91,3 +91,4 @@ export const GraficContainer = styled.div`
     align-items: center;
 `;
 
+export const AtualizarProfile = styled.section``

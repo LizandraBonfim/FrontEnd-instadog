@@ -5,13 +5,14 @@ import styles from './styles.module.css';
 
 function FeedPhotosItem({ photo, setModalPhoto }) {
 
+
     function handleClick() {
-        setModalPhoto(photo)
+        setModalPhoto(photo);
     }
 
     return (
         <li className={styles.photo} onClick={handleClick}>
-            <Image src={`http://localhost:3333/files/${photo.photo}`} alt={photo.nome} />
+            <Image src={` http://192.168.1.6:3333/files/${photo.photo}`} alt={photo.nome} />
             <span className={styles.visualizacao}>{photo.acessos}</span>
         </li>
     )
